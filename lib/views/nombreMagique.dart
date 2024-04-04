@@ -43,6 +43,12 @@ class _JeuState extends State<nombreMagique> {
     } else if (_userGuess > _magicNumber) {
       _showSnackBar('Trop haut !');
     } else {
+      int niveauActuel = context.read<SettingsViewModel>().niveau;
+      if (niveauActuel < 30) {
+        if(context.read<SettingsViewModel>().niveauJeu == niveauActuel){
+          context.read<SettingsViewModel>().niveauJeu = niveauActuel + 1;
+        }
+      }
       _showSnackBar('Bravo ! Vous avez trouvé le nombre magique en $_attempts essais.');
       context.read<SettingsViewModel>().addScore(
         context.read<SettingsViewModel>().pseudo,

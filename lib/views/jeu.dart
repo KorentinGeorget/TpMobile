@@ -155,17 +155,6 @@ class _FormWidgetState extends State<FormWidget> {
     if (_formKey.currentState!.validate()) {
       context.read<SettingsViewModel>().pseudo = _pseudo;
 
-      // Récupérez le niveau actuel du joueur
-      int niveauActuel = context.read<SettingsViewModel>().niveau;
-
-      if (niveauActuel < 30) {
-
-        if(context.read<SettingsViewModel>().niveauJeu == niveauActuel){
-          context.read<SettingsViewModel>().niveauJeu += 1;
-        }
-        
-      }
-
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const nombreMagique()),
