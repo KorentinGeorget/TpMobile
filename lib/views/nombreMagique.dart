@@ -55,7 +55,7 @@ class _JeuState extends State<nombreMagique> {
         if (context.read<SettingsViewModel>().niveauJeu == niveauActuel) {
           context.read<SettingsViewModel>().niveauJeu = niveauActuel + 1;
         }
-        context.read<SettingsViewModel>().niveau = niveauActuel + 2;
+        context.read<SettingsViewModel>().niveau = niveauActuel + 1;
       }
       Navigator.push(
         context,
