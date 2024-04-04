@@ -1,11 +1,10 @@
-// ignore_for_file: camel_case_types, file_names
+// ignore_for_file: camel_case_types, file_names,
 
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tp_note/repository/settingsModel.dart';
-import 'package:tp_note/views/accueil.dart';
 import 'package:tp_note/views/jeu.dart';
 
 class nombreMagique extends StatefulWidget {
