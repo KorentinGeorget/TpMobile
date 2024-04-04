@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tp_note/repository/settingsModel.dart';
 import 'package:tp_note/views/accueil.dart';
+import 'package:tp_note/views/jeu.dart';
 
 class nombreMagique extends StatefulWidget {
   const nombreMagique({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class _JeuState extends State<nombreMagique> {
     _attempts = 0;
   }
 
-    void _checkGuess() {
+  void _checkGuess() {
     setState(() {
       _attempts++;
     });
@@ -43,21 +44,23 @@ class _JeuState extends State<nombreMagique> {
     } else if (_userGuess > _magicNumber) {
       _showSnackBar('Trop haut !');
     } else {
+      _showSnackBar(
+          'Bravo ! Vous avez trouvé le nombre magique en $_attempts essais.');
+      context.read<SettingsViewModel>().addScore(
+            context.read<SettingsViewModel>().pseudo,
+            _attempts.toString(),
+            context.read<SettingsViewModel>().niveau.toString(),
+          );
       int niveauActuel = context.read<SettingsViewModel>().niveau;
       if (niveauActuel < 30) {
-        if(context.read<SettingsViewModel>().niveauJeu == niveauActuel){
+        if (context.read<SettingsViewModel>().niveauJeu == niveauActuel) {
           context.read<SettingsViewModel>().niveauJeu = niveauActuel + 1;
         }
+        context.read<SettingsViewModel>().niveau = niveauActuel + 2;
       }
-      _showSnackBar('Bravo ! Vous avez trouvé le nombre magique en $_attempts essais.');
-      context.read<SettingsViewModel>().addScore(
-        context.read<SettingsViewModel>().pseudo,
-        _attempts.toString(),
-        context.read<SettingsViewModel>().niveau.toString(),
-      );
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const Accueil()),
+        MaterialPageRoute(builder: (context) => const Jeu()),
       );
     }
   }
